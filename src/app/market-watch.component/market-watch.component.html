@@ -1,0 +1,24 @@
+<div class="market-watch">
+    <h2>Market Watch</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Last Price</th>
+          <th>Change</th>
+          <th>Volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stock of marketData$">
+          <td>{{ stock.symbol }}</td>
+          <td>{{ stock.lastPrice | currency }}</td>
+          <td [ngClass]="{'positive-change': stock.change > 0, 'negative-change': stock.change < 0}">
+            {{ stock.change | number:'1.2-2' }}%
+          </td>
+          <td>{{ stock.volume | number }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
