@@ -5,6 +5,7 @@ import { CompressionService } from './compression.service';
 import { SocketService } from './socket.service';
 import { DeserializerFactory } from '../deserializers/deserializer-factory';
 import { BaseMessage } from '../models/base-message.model';
+import { MessageCodes } from '../Constants/message-codes';
 
 @Injectable({
   providedIn: 'root'
@@ -29,21 +30,21 @@ export class MockSocketService {
   }
 
   // Generate mock data to simulate WebSocket message
-  private generateMockData(): { socketName: string, msgCode: number, data: any } {
+  private generateMockData(): { socketName: string,  data: any } {
     const mockData = [
-      { symbol: 'BTC', lastPrice: this.randomPrice(29000, 30000), change: this.randomChange(), volume: this.randomVolume() },
-      { symbol: 'ETH', lastPrice: this.randomPrice(1800, 2000), change: this.randomChange(), volume: this.randomVolume() },
-      { symbol: 'XRP', lastPrice: this.randomPrice(0.5, 0.6), change: this.randomChange(), volume: this.randomVolume() }
+      { msgCode: MessageCodes.MARKET_DATA, symbol: 'BTC', lastPrice: this.randomPrice(29000, 30000), change: this.randomChange(), volume: this.randomVolume() },
+      { msgCode: MessageCodes.MARKET_DATA, symbol: 'ETH', lastPrice: this.randomPrice(1800, 2000), change: this.randomChange(), volume: this.randomVolume() },
+      { msgCode: MessageCodes.MARKET_DATA, symbol: 'XRP', lastPrice: this.randomPrice(0.5, 0.6), change: this.randomChange(), volume: this.randomVolume() }
     ];
 
     return {
       socketName: 'base_n', // Example socket name, should match with entry in socket-config.json
-      msgCode: 101,         // Example message code, to be used by DeserializerFactory
+               // Example message code, to be used by DeserializerFactory
       data: mockData
     };
   }
 
-  private handleMockData({ socketName, msgCode, data }: { socketName: string, msgCode: number, data: any }) {
+  private handleMockData({ socketName,  data }: { socketName: string,  data: any }) {
     const compressionMethod = this.socketService.getCompressionMethod(socketName); // Obtain compression method from the main service
     let processedData: Uint8Array;
 
