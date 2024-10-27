@@ -3,15 +3,16 @@
     "sockets": [
       {
         "name": "base_n",
-        "url": "ws://localhost:8080/base_n"
-      },
+        "url": "ws://localhost:4200/base_n"
+      }
+      ,
       {
         "name": "base_5",
-        "url": "ws://localhost:8080/base_5"
+        "url": "ws://localhost:4200/base_n"
       },
       {
         "name": "market_watch",
-        "url": "ws://localhost:8080/market_watch"
+        "url": "ws://localhost:4200/base_n"
       }
     ]
   }

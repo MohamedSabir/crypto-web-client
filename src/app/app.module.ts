@@ -20,7 +20,8 @@ import { MockDataGeneratorComponent } from './mock-data-generator/mock-data-gene
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
