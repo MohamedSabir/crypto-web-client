@@ -32,17 +32,24 @@ export class SocketService {
       )
       .subscribe(
         config => {
-          config.sockets.forEach(socketConfig => {
-            if (!this.sockets.has(socketConfig.url)) {
-              this.createSocketConnection(socketConfig);
-            } else {
-              console.warn(`Socket already exists for URL: ${socketConfig.url}`);
-            }
-          });
+          if (config?.sockets && Array.isArray(config.sockets)) {
+            config.sockets.forEach(socketConfig => {
+              if (!this.sockets.has(socketConfig.url)) {
+                this.createSocketConnection(socketConfig);
+              } else {
+                console.warn(`Socket already exists for URL: ${socketConfig.url}`);
+              }
+            });
+          } else {
+            console.error('Config does not contain a valid sockets array', config);
+          }
         },
         error => console.error('Failed to load socket or compression configuration', error)
       );
+  
   }
+
+  
 
   private createSocketConnection(socketConfig: SocketConfig): void {
     const socket = new WebSocket(socketConfig.url);

@@ -1,6 +1,6 @@
 {
     "base_n": "LZ4",
-    "base_5": "zip",
+    "base_5": "LZ4",
     "market_watch": "LZ4"
   }
   

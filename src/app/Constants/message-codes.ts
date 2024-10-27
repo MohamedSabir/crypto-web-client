@@ -6,7 +6,7 @@ export class MessageCodes {
     static readonly ORDER_BOOK: number = 1001; // Example code for OrderBookMessage
     static readonly MARKET_DATA: number = 1002; // Example code for MarketDataMessage
     
-    static readonly HEADER_LENGTH: number = 18;
+    static readonly HEADER_LENGTH: number = 2;
 
     // Add other message codes as needed
     static get ORDER_BOOK_LENGTH(): number {
